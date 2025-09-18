@@ -1,4 +1,4 @@
-import { FastifyInstance, FastifyRequest } from "fastify";
+import { FastifyInstance } from "fastify";
 
 import { config } from "../config";
 import PlayerRound from "../models/PlayerRound";
