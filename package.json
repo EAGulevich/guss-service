@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "watch": "tsc -w",
+    "dev": "set NODE_ENV=development && nodemon --inspect dist/index.js ",
     "build": "tsc",
     "start": "node dist/index.js"
   },
@@ -23,6 +25,8 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }
 }
