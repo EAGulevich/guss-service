@@ -16,6 +16,7 @@ export default async function authRoutes(fastify: FastifyInstance) {
         }
         const token = generateToken({ id: user.id, role: user.role });
         reply.setCookie('token', token, { httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
             path: '/',
             });
         return { user: { id: user.id, username, role: user.role } };
