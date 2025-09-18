@@ -1,11 +1,10 @@
 import sequelize from './db';
+import './models/User'; // Импортируем модели
+import './models/Round';
+import './models/PlayerRound';
 
 const start = async () => {
-    try {
-        await sequelize.authenticate();
-        console.log('DB connected');
-    } catch (e) {
-        console.error('DB error:', e);
-    }
+    await sequelize.sync({ alter: true }); // Создаёт/обновляет таблицы
+    console.log('Models synced');
 };
 start();
