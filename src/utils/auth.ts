@@ -25,12 +25,11 @@ export const authMiddleware = async (
   const token = req.cookies.token;
 
   if (!token) {
-    return reply.code(401).send({ error: "Unauthorized" });
+    return reply.code(401).send({ error: "UNAUTHORIZED" });
   }
   try {
-    const decoded = jwt.verify(token, config.jwtSecret) as UserPayload;
-    req.user = decoded;
+    req.user = jwt.verify(token, config.jwtSecret) as UserPayload;
   } catch {
-    return reply.code(401).send({ error: "Invalid token" });
+    return reply.code(401).send({ error: "INVALID_TOKEN" });
   }
 };

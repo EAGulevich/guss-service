@@ -1,4 +1,7 @@
 {
+  "name": "guss-service",
+  "version": "0.1.0",
+  "author": "Gulevich Ekaterina",
   "scripts": {
     "watch": "tsc -w",
     "dev": "set NODE_ENV=development && nodemon --inspect dist/index.js ",

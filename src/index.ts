@@ -12,11 +12,12 @@ import roundsRoutes from "./routes/rounds";
 import tapRoutes from "./routes/tap";
 
 const PORT = process.env.PORT || "3000";
+const HOST = process.env.HOST || "0.0.0.0";
 
-const app = fastify({ logger: true });
+const app = fastify({ logger: false });
 
 app.register(fastifyCors, {
-  origin: ["http://localhost:5173", "https://guss-ui.vercel.app"],
+  origin: ["https://guss-ui.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
@@ -29,7 +30,8 @@ app.register(tapRoutes);
 
 const start = async () => {
   await sequelize.sync({ alter: true });
-  await app.listen({ port: parseInt(PORT), host: "0.0.0.0" });
+  await app.listen({ port: parseInt(PORT), host: HOST });
   console.log(`Successfully running on port ${PORT}.`);
 };
+
 start();

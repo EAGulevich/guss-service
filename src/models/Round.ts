@@ -3,7 +3,7 @@ import { DataTypes, Model } from "sequelize";
 import sequelize from "../db";
 
 class Round extends Model {
-  public id!: number; // TODO: в uuid
+  public id!: number;
   public startDate!: Date;
   public endDate!: Date;
   public totalPoints!: number;

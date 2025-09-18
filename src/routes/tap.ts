@@ -6,13 +6,13 @@ import Round from "../models/Round";
 import { authMiddleware } from "../utils/auth";
 
 export default async function tapRoutes(fastify: FastifyInstance) {
-  fastify.post(
+  fastify.post<{ Params: { id: string } }>(
     "/rounds/:id/tap",
     { preHandler: authMiddleware },
     async (req, reply) => {
-      const { id } = req.params as { id: number };
-      const userId = req.user!.id;
-      const role = req.user!.role;
+      const { id } = req.params;
+      const userId = req.user?.id;
+      const role = req.user?.role;
 
       return await sequelize.transaction(async (t) => {
         const round = await Round.findByPk(id, {
@@ -20,12 +20,12 @@ export default async function tapRoutes(fastify: FastifyInstance) {
           lock: t.LOCK.UPDATE,
         });
         if (!round) {
-          return reply.code(404).send({ error: "Round not found" });
+          return reply.code(404).send({ error: "ROUND_NOT_FOUND" });
         }
 
         const now = new Date();
         if (now < round.startDate || now > round.endDate) {
-          return reply.code(400).send({ error: "Round not active" });
+          return reply.code(400).send({ error: "ROUND_NOT_ACTIVE" });
         }
 
         let playerStats = await PlayerRound.findOne({
