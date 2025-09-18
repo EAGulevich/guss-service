@@ -12,7 +12,7 @@ import tapRoutes from './routes/tap';
 const app = fastify({ logger: true });
 
 app.register(fastifyCors, {
-    origin: 'http://localhost:5173', // TODO
+    origin: 'https://guss-ui.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
