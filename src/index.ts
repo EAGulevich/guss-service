@@ -9,7 +9,7 @@ import authRoutes from './routes/auth';
 import roundsRoutes from './routes/rounds';
 import tapRoutes from './routes/tap';
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || '3000';
 
 const app = fastify({ logger: true });
 
@@ -27,7 +27,7 @@ app.register(tapRoutes);
 
 const start = async () => {
     await sequelize.sync({ alter: true });
-    await app.listen({ port: +PORT });
+    await app.listen({ port: parseInt(PORT), host: '0.0.0.0' });
     console.log(`Successfully running on port ${PORT}.`);
 };
 start();
