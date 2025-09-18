@@ -15,7 +15,9 @@ export default async function authRoutes(fastify: FastifyInstance) {
             return reply.code(400).send({ error: 'Wrong password' });
         }
         const token = generateToken({ id: user.id, role: user.role });
-        reply.setCookie('token', token, { httpOnly: true });
+        reply.setCookie('token', token, { httpOnly: true,
+            path: '/',
+            });
         return { user: { id: user.id, username, role: user.role } };
     });
 }
