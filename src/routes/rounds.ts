@@ -3,7 +3,8 @@ import Round from '../models/Round';
 import PlayerRound from '../models/PlayerRound';
 import { config } from '../config';
 import { authMiddleware } from '../utils/auth';
-// import User from '../models/User';
+import User from '../models/User';
+import {Includeable} from "sequelize";
 
 export default async function roundsRoutes(fastify: FastifyInstance) {
     fastify.get('/rounds', { preHandler: authMiddleware }, async () => {
@@ -31,13 +32,19 @@ export default async function roundsRoutes(fastify: FastifyInstance) {
 
         let winner = null;
         if (status === 'finished') {
-            // const stats = await PlayerRound.findAll<PlayerRound>({
-            //     where: { roundId: id },
-            //     order: [['points', 'DESC']],
-            //     limit: 1,
-            //     include: [User],
-            // });
-            // if (stats.length) winner = stats[0].User.username;
+            const stats = await PlayerRound.findAll({
+                where: { roundId: id },
+                order: [['points', 'DESC']],
+                limit: 1,
+                include: [{
+                    model: User,
+                    as: 'User',
+                } as Includeable],
+            });
+            if (stats.length) {
+                const user = stats[0].get('User') as User | undefined;
+                winner = user?.username || null;
+            }
         }
 
         return { round, status, myPoints, winner };

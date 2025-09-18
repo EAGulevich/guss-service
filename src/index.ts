@@ -7,6 +7,7 @@ import './models/Round';
 import './models/PlayerRound';
 import authRoutes from './routes/auth';
 import roundsRoutes from './routes/rounds';
+import tapRoutes from './routes/tap';
 
 const app = fastify({ logger: true });
 
@@ -20,6 +21,7 @@ app.register(fastifyCors, {
 app.register(fastifyCookie);
 app.register(authRoutes);
 app.register(roundsRoutes);
+app.register(tapRoutes);
 
 const start = async () => {
     await sequelize.sync({ alter: true });
