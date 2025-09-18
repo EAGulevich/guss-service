@@ -14,8 +14,15 @@
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
+    "@eslint/js": "^9.35.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.5.2",
+    "@typescript-eslint/eslint-plugin": "^8.44.0",
+    "@typescript-eslint/parser": "^8.44.0",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "typescript": "^5.9.2"
   }
 }
