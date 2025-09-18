@@ -28,6 +28,6 @@ app.register(tapRoutes);
 const start = async () => {
     await sequelize.sync({ alter: true });
     await app.listen({ port: +PORT });
-    console.log('Successfully running on port 3000.');
+    console.log(`Successfully running on port ${PORT}.`);
 };
 start();
