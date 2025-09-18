@@ -9,6 +9,8 @@ import authRoutes from './routes/auth';
 import roundsRoutes from './routes/rounds';
 import tapRoutes from './routes/tap';
 
+const PORT = process.env.PORT || 5001;
+
 const app = fastify({ logger: true });
 
 app.register(fastifyCors, {
@@ -25,7 +27,7 @@ app.register(tapRoutes);
 
 const start = async () => {
     await sequelize.sync({ alter: true });
-    await app.listen({ port: 3000 });
+    await app.listen({ port: +PORT });
     console.log('Successfully running on port 3000.');
 };
 start();
