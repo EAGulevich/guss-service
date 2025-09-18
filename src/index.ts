@@ -9,7 +9,7 @@ import authRoutes from './routes/auth';
 import roundsRoutes from './routes/rounds';
 import tapRoutes from './routes/tap';
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 3000;
 
 const app = fastify({ logger: true });
 
