@@ -1,0 +1,4 @@
+# Переименуйте в .env
+ROUND_DURATION=60
+COOLDOWN_DURATION=30
+

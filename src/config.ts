@@ -1,0 +1,7 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
+export const config = {
+    roundDuration: parseInt(process.env.ROUND_DURATION || '60') * 1000,
+    cooldownDuration: parseInt(process.env.COOLDOWN_DURATION || '30') * 1000,
+};
