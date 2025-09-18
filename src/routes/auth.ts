@@ -29,7 +29,7 @@ export default async function authRoutes(fastify: FastifyInstance) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       path: "/",
-      sameSite: "none",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
     return { user: { id: user.id, username, role: user.role } };
   });
