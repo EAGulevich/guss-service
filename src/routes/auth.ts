@@ -35,7 +35,7 @@ export default async function authRoutes(fastify: FastifyInstance) {
         path: "/",
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       });
-      return { user: { id: user.id, username, role: user.role } };
+      return { user: { id: user.id, username, role: user.role }, token };
     },
   );
 }

@@ -22,11 +22,17 @@ export const authMiddleware = async (
   req: FastifyRequest,
   reply: FastifyReply,
 ) => {
-  const token = req.cookies.token;
+  const tokenFromCookie = req.cookies.token;
+  const authHeader = req.headers.authorization;
 
-  if (!token) {
+  if (!tokenFromCookie && (!authHeader || !authHeader.startsWith("Bearer "))) {
     return reply.code(401).send({ error: "UNAUTHORIZED" });
   }
+
+  const tokenFromHeader = authHeader?.replace("Bearer ", "");
+
+  const token = tokenFromCookie || tokenFromHeader || "";
+
   try {
     req.user = jwt.verify(token, config.jwtSecret) as UserPayload;
   } catch {
